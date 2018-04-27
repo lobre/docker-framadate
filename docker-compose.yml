@@ -20,7 +20,7 @@ services:
       - traefik.home=false
 
   db:
-    image: mysql
+    image: mariadb
     container_name: framadate-db
     environment:
       - MYSQL_ROOT_PASSWORD=${db_password}
