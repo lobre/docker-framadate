@@ -2,15 +2,22 @@ version: '3'
 
 services:
   app:
-    image: framadate
+    image: lobre/framadate
     container_name: framadate
     volumes:
       - ./logo.png:/var/www/html/images/logo-framadate.png
       - ./config.php:/var/www/html/app/inc/config.php
+      - ./index.tpl:/var/www/html/tpl/index.tpl
     depends_on:
       - db
     ports:
       - 8082:80
+    labels:
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.home=false
+
   db:
     image: mysql
     container_name: framadate-db

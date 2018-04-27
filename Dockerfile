@@ -30,7 +30,7 @@ RUN apt-get update && \
         docker-php-ext-install intl && \
 
         # Framadate
-        git clone https://github.com/framasoft/framadate.git ./ && \
+        git clone https://framagit.org/framasoft/framadate.git ./ && \
         git checkout ${branch} && \
         curl https://getcomposer.org/installer | php -- --quiet && \
         php composer.phar install && \
@@ -48,5 +48,4 @@ COPY --chown=www-data:www-data php.ini ./php.ini
 
 # Links for docker logs
 RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log && \
-    ln -sf /proc/self/fd/1 /var/log/apache2/error.log && \
-    ln -sf /proc/self/fd/1 ./admin/stdout.log
+    ln -sf /proc/self/fd/1 /var/log/apache2/error.log
